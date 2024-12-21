@@ -5,7 +5,6 @@ BASE_CMD=$1
 shift
 
 # Gather all non-dash arguments (until the first dash-option) as potential subcommand parts.
-# The rest (including the dash-option and what follows) is leftover_args.
 subcmd_parts=()
 leftover_args=()
 
@@ -22,12 +21,6 @@ for arg in "$@"; do
 done
 
 # We'll attempt from the longest subcmd down to just 1 subcmd-part.
-# E.g. if subcmd_parts=( "world" "is" "the" "default" ), we try:
-#   hello-world-is-the-default
-#   hello-world-is-the
-#   hello-world-is
-#   hello-world
-# If none exist, we fall back to `hello`.
 for (( i=${#subcmd_parts[@]}; i>0; i-- )); do
   # Build a candidate script name from the first i words
   candidate="$BASE_CMD"
