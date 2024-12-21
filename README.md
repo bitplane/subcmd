@@ -4,18 +4,19 @@ A simple subcommand dispatcher. Like how `git commit` runs `git-commit`
 
 ## Usage
 
-```bash
-$ alias mycmd="bin/subcmd.sh mycmd"
-$ mycmd sub cmd -f whatever.txt
+In a file called `mycmd`
+
+```sh
+export HELP="Usage: mycmd [subcommand] ..."
+
+. subcmd.sh
 ```
 
-Will check for the following commands, and run them if they exist:
+And if any functions, aliases or functions called `mycmd-*` exist, it'll
+run them instead. If you call `mycmd --help`, it'll print the available
+subcommands after the HELP you specified.
 
-```bash
-mycmd-sub-cmd -f whatever.txt
-mycmd-sub cmd -f whatever.txt
-mycmd sub cmd -f whatever.txt
-```
+You can include it subcommands too.
 
 ## License
 

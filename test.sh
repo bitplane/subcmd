@@ -2,6 +2,8 @@
 
 set -e
 
+export PATH=./tests/hello:$PATH
+
 green() { echo -e "\033[32m$*\033[0m"; }
 red()   { echo -e "\033[31m$*\033[0m"; }
 
@@ -25,26 +27,26 @@ run_test() {
 
 run_test \
   "1: Arg with space" \
-  "./subcmd.sh tests/hello \"world is my toilet\"" \
+  "hello \"world is my toilet\"" \
   "hello world is my toilet"
 
 run_test \
   "2: Subcommand 'world' with args" \
-  "./subcmd.sh tests/hello world is the default" \
+  "hello world is the default" \
   "HELLO WORLD is the default"
 
 run_test \
   "3: Subcommand 'universe', which doesn't exist so falls back to hello" \
-  "./subcmd.sh tests/hello universe" \
+  "hello universe" \
   "hello universe"
 
 run_test \
   "4: Files subcommand with flag" \
-  "./subcmd.sh tests/hello file contents -f README.md | head -n1" \
+  "hello file contents -f README.md | head -n1" \
   "# subcmd.sh"
 
 run_test \
   "5: Strange combo" \
-  "./subcmd.sh tests/hello world-informal this is a --test" \
+  "hello world informal this is a --test" \
   "hi, this is a --test"
 

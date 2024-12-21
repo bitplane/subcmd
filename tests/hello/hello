@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export HELP="Usage: hello [COMMAND|person]"
+source $(dirname $0)/../../subcmd.sh
+
+echo "hello $*"
