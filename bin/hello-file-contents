@@ -1,0 +1,11 @@
+#!/bin/bash
+file=""
+while [[ "$1" == -* ]]; do
+    case "$1" in
+        -f) shift; file=$1 ;;
+        *) echo "Unknown flag: $1" >&2; exit 1 ;;
+    esac
+    shift
+done
+
+cat $file
